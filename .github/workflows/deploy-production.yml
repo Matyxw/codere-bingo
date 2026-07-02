@@ -1,0 +1,27 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - "v*.*.*"
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm --prefix frontend ci
+      - run: npm --prefix frontend run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-production
+          path: frontend/dist/
+      - run: echo "Deploy backend to production placeholder"
+      - run: echo "Deploy frontend dist to production placeholder"
+    outputs:
+      deployment_version: ${{ github.ref_name }}
