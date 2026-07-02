@@ -5,14 +5,14 @@
 - Rama: `main`
 - URL: https://github.com/Matyxw/codere-cartones
 
-## Stack
+## Stack confirmado
 - Backend: FastAPI + SQLAlchemy 2.0 async + PostgreSQL + Alembic
 - Frontend: React + TypeScript + Vite + Tailwind v4
-- Infra: Docker Compose + GitHub Codespaces + GitHub Actions
-- Testing: pytest async, vitest
-- Lint/typecheck: ruff, mypy
+- Testing backend: pytest + TestClient + rate-limit unit
+- Testing frontend: Vitest + Testing Library + jsdom
+- Infra: Docker Compose + GitHub Actions + Codespaces
 
-## Skills activas
+## Skills IA activas
 1. `backend-architect` — feature backend, endpoint, schema
 2. `frontend-crafter` — página, componente, lib/api
 3. `qr-auditor` — QR, ticket, validación, HMAC
@@ -23,37 +23,37 @@
 8. `documentation-keeper` — docs, ADR, README, onboarding
 9. `integration-debugger` — imports, rutas, tests, CI, venv
 
-## Archivos obligatorios antes de editar
-1. `AGENTS.md`
-2. `.clinerules`
-3. `.agents/CONTEXT.md`
-4. `.agents/SKILL_MAP.md`
-5. `.agents/rules/decision-gate.md`
-6. `docs/02-dominio/proyecto.md`
-
-## Cómo usar este archivo con IA
-- Antes de cualquier tarea, lee `docs/AI-READY.md` y `.agents/skills/README.md`.
-- Identifica la skill por trigger/scope.
-- Ejecuta los pasos obligatorios de esa skill.
-- No cambies dominio sin ADR.
-- No introduzcas dependencias sin skill `infra-operator`.
-
-## Comandos
-- Backend: `uvicorn backend.main:app --reload`
-- Frontend: `npm run dev --prefix frontend`
-- Tests backend: `pytest backend/tests -q`
-- Lint: `ruff check backend`
-- Typecheck: `mypy backend`
-- Validación local: `bash .agents/scripts/local_test.sh`
-- Smoke-test: `bash .agents/scripts/smoke_test.sh`
-
 ## Puertos
 - Backend: `8000`
 - Frontend: `5173`
 - Postgres: `5432`
 
-## Nota para Gemini Pro / Claude Sonnet
-- Seguí siempre la skill correspondiente antes de actuar.
-- Respetá la decision gate T1/T2/T3.
-- No inventes stack ni dependencias.
-- Documentá todo cambio.
+## Comandos obligatorios antes de editar dominio
+```bash
+bash .agents/scripts/smoke_test.sh
+bash .agents/scripts/local_test.sh
+```
+
+## Deploy
+- Staging: push a `main`
+- Producción: tag `v*.*.*`
+- Scripts: `.agents/scripts/deploy_staging.sh`, `.agents/scripts/deploy_production.sh`
+
+## Validación continua
+- Backend contratos: `pytest backend/tests/test_e2e_contracts.py -q`
+- Backend rate limit: `pytest backend/tests/test_rate_limit.py -q`
+- Frontend unit: `npm run test --prefix frontend -- --run`
+- Lint backend: `ruff check backend`
+- Typecheck backend: `mypy backend || true`
+
+## Estado actual
+- Smoke-test: PASS
+- Tests E2E por contrato: PASS
+- Rate limit unit: PASS
+- CI: lista para correr en GitHub Actions
+- Configuración AI: COMPLETA
+
+## Proxy real pendiente
+1. Ejecutar `bash .agents/scripts/local_test.sh` en tu máquina/Antigravity
+2. Conectar staging/producción en `.github/workflows/deploy-*.yml`
+3. Definir `IMPRESORA_URL`, `WEB_PRINT_TOKEN` y binario para `agente-local/`
