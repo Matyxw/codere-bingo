@@ -1,0 +1,13 @@
+name: Dependabot
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Dependabot config already present in .github/dependabot.yml"
+      - run: git ls-files .github
