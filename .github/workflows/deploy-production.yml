@@ -27,7 +27,24 @@ jobs:
         with:
           name: frontend-production
           path: frontend/dist/
-      - run: echo "Deploy backend to production placeholder"
-      - run: echo "Deploy frontend dist to production placeholder"
+          retention-days: 30
+      - name: Deploy backend to production
+        run: |
+          echo "Replace this step with your production deploy command"
+          echo "Examples: blue-green deploy, canary, rolling update"
+      - name: Deploy frontend to production
+        run: |
+          echo "Replace this step with your frontend deploy command"
+          echo "Examples: CDN invalidation, S3 sync, Vercel promote"
+      - name: Health check production
+        run: |
+          echo "Replace with your production health check URL"
+          echo "curl -f https://codere-bingo.example.com/health || exit 1"
+      - name: Slack notification
+        if: always()
+        run: |
+          echo "Replace with your notification webhook"
+          echo "Notify team on deploy success/failure"
     outputs:
       deployment_version: ${{ github.ref_name }}
+      deployment_sha: ${{ github.sha }}

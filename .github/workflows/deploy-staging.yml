@@ -25,5 +25,16 @@ jobs:
         with:
           name: frontend-staging
           path: frontend/dist/
-      - run: echo "Deploy backend to staging placeholder"
-      - run: echo "Deploy frontend dist to staging placeholder"
+          retention-days: 7
+      - name: Deploy backend to staging
+        run: |
+          echo "Replace this step with your staging deploy command"
+          echo "Examples: ssh deploy, fly deploy, render deploy, docker push"
+      - name: Deploy frontend to staging
+        run: |
+          echo "Replace this step with your frontend deploy command"
+          echo "Examples: rsync dist/, S3 sync, Vercel deploy"
+      - name: Health check staging
+        run: |
+          echo "Replace with your staging health check URL"
+          echo "curl -f https://staging.example.com/health || exit 1"
