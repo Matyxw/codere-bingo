@@ -1,18 +1,19 @@
-# Testing
+# Testing backend
 
-## Backend
-- Unit tests: `pytest backend/tests/test_main.py -q`
-- E2E: `pytest backend/tests/test_e2e_compra.py -q`
-- Requiere `asyncpg`.
-- En local usar entorno aislado: `.agents/scripts/run_integration_tests.sh`
+## Objetivo
+Tener suite backend reproducible en Codespaces y CI sin depender de venv locales rotos.
 
-## Frontend
-- Unit + component tests: `npm --prefix frontend exec vitest run`
-- E2E Playwright está planeado pero no bloquea el repo.
+## Comandos
+```bash
+# Instalar lockfile
+python -m pip install -r requirements.lock.txt
 
-## CI
-- GitHub Actions provee PostgreSQL 16 real como service.
-- Correr tests desde Codespaces/Docker asegura dependencias correctas.
+# Unit tests (SQLite async)
+pytest backend/tests/test_main.py -q
+
+# E2E
+pytest backend/tests/test_e2e_compra.py -q
+```
 
 ## Nota
-Si falla import por `asyncpg`, primero correr el script de entorno aislado o usar Docker Codespaces.
+En Codespaces recomiendo correr desde la imagen devcontainer oficial; evita venv locales rotos.
