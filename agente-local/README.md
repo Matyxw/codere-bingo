@@ -1,10 +1,10 @@
 Sistema ligero para impresión local por puesto.
 
-Estado actual:
-- Contrato: el backend envía datos de impresión al agente por HTTP local.
-- En esta entrega solo se define la estructura y el README mínimo.
+Stack sugerido:
+- Binario único sin runtime
+- HTTP local autenticado
+- Logs locales con rotación
 
-Próximo paso operatorio:
-- Definir impresora, modelo, driver.
-- Definir endpoint local del puesto.
-- Definir token por puesto.
+Objetivo:
+- Imprimir ticket QR sin intervención del operador.
+- Mantener trazabilidad mínima local.
