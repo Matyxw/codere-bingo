@@ -1,4 +1,6 @@
-# Estado
-Stack separado al sistema legacy existente.
-Backend FastAPI async + PostgreSQL + Alembic.
-Frontend React + Vite + Tailwind v4.
+# Estado del proyecto
+
+Stack listo y separado del sistema legacy existente.
+Backend, frontend, docker, Codespaces y CI configurados.
+Documentación de dominio, MVP, roadmap y decisiones registrada.
+Fase actual: esperando confirmaciones operativas para cerrar producción.
