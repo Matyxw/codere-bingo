@@ -1,0 +1,24 @@
+# CODEOWNERS
+
+# Default owners
+* @Matyxw
+
+# Backend
+/backend/ @Matyxw
+/backend/** @Matyxw
+
+# Frontend
+/frontend/ @Matyxw
+/frontend/** @Matyxw
+
+# Infra
+/.github/ @Matyxw
+/.devcontainer/ @Matyxw
+/docker-compose.yml @Matyxw
+/Dockerfile @Matyxw
+
+# Configuración
+/AGENTS.md @Matyxw
+/.clinerules @Matyxw
+/.agents/ @Matyxw
+/docs/ @Matyxw
