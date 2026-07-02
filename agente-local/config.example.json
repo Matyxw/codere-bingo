@@ -1,0 +1,6 @@
+{
+  "puesto_id": "string",
+  "url": "string",
+  "token": "string",
+  "endpoint": "http://127.0.0.1:PORT/print"
+}
