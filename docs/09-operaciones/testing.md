@@ -1,19 +1,9 @@
-# Testing backend
+# Reproducir tests sin pelearse con Hermes
 
-## Objetivo
-Tener suite backend reproducible en Codespaces y CI sin depender de venv locales rotos.
+- `cd /mnt/d/codigos/importante/Codere-Bingo`
+- `python3 -m venv .venv`
+- `. .venv/bin/activate`
+- `python -m pip install -r requirements.lock.txt`
+- `PYTHONPATH=/mnt/d/codigos/importante/Codere-Bingo pytest backend/tests -q`
 
-## Comandos
-```bash
-# Instalar lockfile
-python -m pip install -r requirements.lock.txt
-
-# Unit tests (SQLite async)
-pytest backend/tests/test_main.py -q
-
-# E2E
-pytest backend/tests/test_e2e_compra.py -q
-```
-
-## Nota
-En Codespaces recomiendo correr desde la imagen devcontainer oficial; evita venv locales rotos.
+Nota: el fallo actual en local es de módulo `aiosqlite` en el intérprete usado; en CI/usando el venv del repo debería avanzar.

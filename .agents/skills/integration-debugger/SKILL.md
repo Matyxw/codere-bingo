@@ -15,10 +15,11 @@ scope: debugging
 - Configuración de `.env`
 - Test roto por ruta
 - CI rota por paths incorrectos
+- Intérprete/venv usado por tests
 
 ## Pasos obligatorios
 1. Leer `docs/09-operaciones/testing.md`.
-2. Reproducir fallo en local.
+2. Reproducir fallo con el venv del repo, no con el de Hermes.
 3. Marcar causa raíz en `docs/06-sesiones/YYYY-MM-DD.md`.
 4. Aplicar parche mínimo en ruta/config.
 5. Verificar build/test mínimo.
