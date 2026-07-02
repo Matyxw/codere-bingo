@@ -1,6 +1,5 @@
 import time
 from collections import defaultdict
-
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from backend.core.config import settings
