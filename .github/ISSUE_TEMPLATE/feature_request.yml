@@ -1,0 +1,17 @@
+name: Feature request
+description: Solicitar una nueva funcionalidad
+body:
+  - type: input
+    id: problem
+    attributes:
+      label: Problema a resolver
+      placeholder: "Hoy no se puede ..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      placeholder: "Sugerencia de implementación"
+    validations:
+      required: false
