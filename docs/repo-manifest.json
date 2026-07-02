@@ -1,0 +1,47 @@
+{
+  "repository": "Codere-Bingo",
+  "owner": "Matyxw",
+  "url": "https://github.com/Matyxw/codere-bingo",
+  "stack": {
+    "backend": "FastAPI async + SQLAlchemy + PostgreSQL + Alembic",
+    "frontend": "React + TypeScript + Vite + Tailwind v4",
+    "infra": "Docker Compose + GitHub Codespaces + GitHub Actions"
+  },
+  "entrypoints": {
+    "backend": "backend/main.py",
+    "frontend": "frontend/src/main.tsx",
+    "health": "/health",
+    "docs": "docs/02-dominio/proyecto.md"
+  },
+  "ports": {
+    "backend": 8000,
+    "frontend": 5173,
+    "postgres": 5432
+  },
+  "commands": {
+    "backend": "uvicorn backend.main:app --reload",
+    "frontend": "npm run dev --prefix frontend",
+    "tests": "pytest backend/tests -q",
+    "lint": "ruff check backend",
+    "validate": ".agents/scripts/validate_project.sh"
+  },
+  "config_files": [
+    "AGENTS.md",
+    ".clinerules",
+    ".agents/WORLD_STATE.md",
+    ".agents/CONTEXT.md",
+    ".agents/SKILL_MAP.md",
+    ".agents/rules/decision-gate.md",
+    ".agents/decisions/adrs.md",
+    ".agents/config/workflows.schema.yaml",
+    ".agents/config/observability.yaml"
+  ],
+  "docs": [
+    "docs/01-estado/README.md",
+    "docs/02-dominio/proyecto.md",
+    "docs/04-roadmap/roadmap.md",
+    "docs/08-features/mvp.md",
+    "docs/09-operaciones/local.md",
+    "docs/09-operaciones/secrets.md"
+  ]
+}
