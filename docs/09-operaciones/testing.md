@@ -1,9 +1,14 @@
-# Reproducir tests sin pelearse con Hermes
+# Testing backend local sin pelearse con Hermes
 
-- `cd /mnt/d/codigos/importante/Codere-Bingo`
-- `python3 -m venv .venv`
-- `. .venv/bin/activate`
-- `python -m pip install -r requirements.lock.txt`
-- `PYTHONPATH=/mnt/d/codigos/importante/Codere-Bingo pytest backend/tests -q`
+Ejecutar:
 
-Nota: el fallo actual en local es de módulo `aiosqlite` en el intérprete usado; en CI/usando el venv del repo debería avanzar.
+```bash
+bash .agents/scripts/local_test.sh
+```
+
+Escribe:
+- venv aislado del proyecto
+- instala lockfile
+- corre ruff, mypy y pytest backend completo
+
+Si falla por dependencias, repetir desde un codespace limpio.
