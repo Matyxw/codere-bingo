@@ -1,10 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import App from "../src/App";
 
-describe("App", () => {
-  it("muestra el título principal", () => {
-    render(<App />);
-    expect(screen.getByText("Codere Bingo")).toBeDefined();
-  });
+test("muestra el título principal", () => {
+  render(<App />);
+  expect(screen.getByText("Codere Bingo")).toBeDefined();
+});
+
+test("muestra la página de compra", () => {
+  render(<App />);
+  expect(screen.getByText("Nueva compra")).toBeDefined();
 });
