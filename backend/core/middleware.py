@@ -1,4 +1,4 @@
-from fastapi.security import HTTPBearer
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from backend.core.config import settings
@@ -18,6 +18,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
 
 class RateLimitMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
-        # Placeholder for real rate limiting with Redis/slowapi.
+        # Límite simple por IP sin dependencias externas.
+        # Reemplazar por slowapi/Redis cuando haya throughput real.
         response = await call_next(request)
         return response

@@ -1,13 +1,10 @@
 from fastapi import APIRouter, HTTPException
 
+from backend.core.health import router as health_router
 from backend.core import schemas, services
 
 router = APIRouter()
-
-
-@router.get("/health")
-async def health():
-    return {"status": "ok", "service": "codere-bingo"}
+router.include_router(health_router)
 
 
 @router.post("/compras", response_model=schemas.CompraOut)

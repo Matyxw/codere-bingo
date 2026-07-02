@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 project_root = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(project_root))
 
-os.environ.setdefault("DATABASE_URL", "sqlite://")
+os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite://")
 os.environ.setdefault("SECRET_KEY", "test-secret")
 os.environ.setdefault("CORS_ORIGINS", "*")
 
@@ -34,4 +34,4 @@ def test_health():
 
 def test_cancelado_por_falta_de_datos():
     response = client.post("/compras", json={})
-    assert response.status_code in (400, 422)
+    assert response.status_code == 422
