@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-card: #0b0f14;
+  --color-tx-1: #e7e9ea;
+  --color-ok: #22c55e;
+  --color-ac: #38bdf8;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+}
+
+html, body {
+  background-color: #05080c;
+  color: var(--color-tx-1);
+}

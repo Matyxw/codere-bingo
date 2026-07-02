@@ -1,0 +1,28 @@
+{
+  ".agents": {
+    "Decision Gate": "T1 críticas; T2 arquitectónicas; T3 helpers/docs",
+    "Skills obligatorias": "reflexion-loop, secops-auditor, world-state-manager",
+    "Estado vivo": ".agents/WORLD_STATE.md",
+    "Persistencia": "PostgreSQL; secrets en env; sin shell=True"
+  },
+  "backend": {
+    "entry": "backend/main.py",
+    "puerto": 8000,
+    "health": "/health"
+  },
+  "frontend": {
+    "dev": 5173,
+    "entry": "frontend/src/main.tsx",
+    "tailwind": "v4"
+  },
+  "infra": {
+    "docker": "docker-compose.yml",
+    "codespaces": ".devcontainer/devcontainer.json",
+    "ci": ".github/workflows/ci.yml"
+  },
+  "alias": {
+    "tests": "pytest backend/tests -q",
+    "backend": "uvicorn backend.main:app --reload",
+    "frontend": "npm run dev --prefix frontend"
+  }
+}

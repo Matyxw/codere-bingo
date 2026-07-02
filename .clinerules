@@ -1,0 +1,8 @@
+THE ARCHITECT CORP — REGLAS DEL PROYECTO
+- Stack: Backend FastAPI + SQLAlchemy 2.0 async + PostgreSQL; Frontend React + TypeScript + Vite + Tailwind v4
+- Seguridad: JWT, HMAC QR, secrets desde env, ORM siempre, sin shell=True
+- Calidad: ruff, mypy, pytest, Vitest, React Testing Library
+- Frontend: pureza visual, estado centralizado, cero emojis, iconos locales
+- Infra: Docker multi-stage, Alembic, GitHub Actions
+- Trazabilidad: logs estructurados structlog, auditoría durable
+- Obsidian-First veto: feature sin doc en Obsidian no se implementa
