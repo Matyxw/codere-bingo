@@ -56,6 +56,12 @@ jobs:
           restore-keys: |
             pip-${{ runner.os }}-
       - run: python -m pip install -r requirements.lock.txt
+      - name: Wait for Postgres
+        run: |
+          for i in $(seq 1 30); do
+            pg_isready -h localhost -p 5432 -U postgres && break
+            sleep 1
+          done
       - run: pytest backend/tests -q
 
   build-frontend:
@@ -72,6 +78,6 @@ jobs:
           key: npm-${{ runner.os }}-${{ hashFiles('frontend/package.json') }}
           restore-keys: |
             npm-${{ runner.os }}-
-      - run: npm --prefix frontend ci
+      - run: npm --prefix frontend install
       - run: npm --prefix frontend run build
       - run: npm --prefix frontend exec vitest run
