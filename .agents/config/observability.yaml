@@ -1,0 +1,36 @@
+app_name: codere_bingo
+version: "1.0"
+
+observers:
+  - structlog
+  - metrics
+
+rules:
+  obligatorio_log_request: true
+  obligatorio_log_response: true
+  incluir_trace_id: true
+  incluir_request_id: true
+  incluir_tenant_id: true
+  incluir_puesto_id: true
+  incluir_operador_id: true
+  redactar_secrets: true
+  incluir_payload_qr_hash: true
+  incluir_resultado_validacion: true
+
+backends:
+  structured_logs: stdout
+  metrics:
+    prometheus:
+      enabled: false
+    otel:
+      enabled: false
+  traces:
+    jaeger:
+      enabled: false
+    otel:
+      enabled: false
+
+retention:
+  evento_compra_dias: 365
+  evento_validacion_dias: 365
+  comprimir_eventos_vacios: true

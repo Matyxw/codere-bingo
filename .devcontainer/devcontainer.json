@@ -9,7 +9,7 @@
       "version": "16"
     }
   },
-  "postCreateCommand": "python -m pip install -r requirements.lock.txt && npm --prefix frontend ci",
+  "postCreateCommand": "python -m pip install -r requirements.lock.txt && npm --prefix frontend ci && git config --global core.autocrlf input && git config --global --add safe.directory /workspaces/codere-bingo",
   "forwardPorts": [8000, 5173, 5432],
   "customizations": {
     "vscode": {
@@ -27,5 +27,8 @@
         "frontend/src/App.tsx"
       ]
     }
-  }
+  },
+  "mounts": [
+    "source=antigravity,target=/home/coder/.local/share/antigravity,type=volume"
+  ]
 }

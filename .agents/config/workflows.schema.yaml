@@ -1,0 +1,72 @@
+compras:
+  schema_version: "1.0"
+  enabled: true
+  worker: compra_worker
+  task_timeout: 30
+  retry_policy:
+    max_attempts: 3
+    backoff: linear
+    backoff_factor: 2
+    max_backoff: 10
+  metrics:
+    emit_events: true
+    latency_budget_ms: 800
+  sla:
+    p95_ms: 1200
+    p99_ms: 2500
+    error_rate_max: 0.01
+
+validaciones_qr:
+  schema_version: "1.0"
+  enabled: true
+  worker: validacion_qr_worker
+  task_timeout: 15
+  retry_policy:
+    max_attempts: 2
+    backoff: linear
+    backoff_factor: 1
+    max_backoff: 5
+  metrics:
+    emit_events: true
+    latency_budget_ms: 400
+  sla:
+    p95_ms: 700
+    p99_ms: 1400
+    error_rate_max: 0.005
+
+impresion_local:
+  schema_version: "1.0"
+  enabled: false
+  worker: impresion_worker
+  task_timeout: 20
+  retry_policy:
+    max_attempts: 2
+    backoff: exponential
+    backoff_factor: 3
+    max_backoff: 20
+  metrics:
+    emit_events: true
+    latency_budget_ms: 1000
+  sla:
+    p95_ms: 1800
+    p99_ms: 4000
+    error_rate_max: 0.04
+  notes:
+    - Activar solo cuando el puesto tenga impresora o web print configurado.
+    - Si falla, el flujo de venta no se bloquea; queda en cola.
+
+alertas:
+  schema_version: "1.0"
+  reglas:
+    - id: compra_lenta
+      when: latency_p95_ms > compras.sla.p95_ms
+      severity: warning
+    - id: validacion_lenta
+      when: latency_p95_ms > validaciones_qr.sla.p95_ms
+      severity: warning
+    - id: impresion_fallida_masiva
+      when: error_rate > impresion_local.sla.error_rate_max
+      severity: critical
+    - id: qr_duplicado
+      when: validation.duplicate_qr_detected == true
+      severity: critical
