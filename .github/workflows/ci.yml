@@ -23,6 +23,7 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements.lock.txt
       - run: ruff check backend
+      - run: mypy backend || true
 
   test:
     runs-on: ubuntu-latest
@@ -39,6 +40,10 @@ jobs:
           --health-interval 5s
           --health-timeout 5s
           --health-retries 5
+    env:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@localhost:5432/codere_bingo
+      SECRET_KEY: test-secret
+      CORS_ORIGINS: "*"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -52,7 +57,6 @@ jobs:
             pip-${{ runner.os }}-
       - run: python -m pip install -r requirements.lock.txt
       - run: pytest backend/tests -q
-      - run: pytest backend/tests/test_e2e_compra.py -q
 
   build-frontend:
     runs-on: ubuntu-latest
