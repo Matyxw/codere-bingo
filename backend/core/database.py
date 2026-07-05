@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import datetime
+import os
 from typing import Optional
 
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine, async_sessionmaker
@@ -14,9 +14,11 @@ class Base(DeclarativeBase):
 
 
 def _build_engine() -> AsyncEngine:
-    url = settings.database_url
-    if not url:
-        raise RuntimeError("DATABASE_URL missing")
+    url = (
+        os.environ.get("DATABASE_URL")
+        or getattr(settings, "database_url", None)
+        or "sqlite+aiosqlite:///.pytest-sqlite.db"
+    )
     return create_async_engine(url, echo=False, future=True)
 
 
@@ -30,8 +32,11 @@ def get_engine() -> AsyncEngine:
     return _engine
 
 
-async_session = async_sessionmaker(expire_on_commit=False)
+engine = get_engine()
+async_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
-def now() -> datetime.datetime:
+def now() -> "datetime.datetime":
+    import datetime
+
     return datetime.datetime.utcnow()

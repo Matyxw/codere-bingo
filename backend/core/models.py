@@ -40,7 +40,7 @@ class Puesto(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True, default=lambda: secrets.token_hex(16))
     nombre: Mapped[str] = mapped_column(String(120), nullable=False)
     ubicacion: Mapped[str] = mapped_column(String(180), nullable=False)
-    impresora_url: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    impresora_url: Mapped[str | None] = mapped_column(String(255), nullable=True)
     creado_en: Mapped[datetime.datetime] = mapped_column(DateTime, default=datetime.datetime.utcnow)
 
 
@@ -53,7 +53,7 @@ class Compra(Base):
     importe_total: Mapped[float] = mapped_column(Numeric(10, 2), nullable=False)
     qr_payload: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     medio_pago: Mapped[str] = mapped_column(String(20), nullable=False, default="efectivo")
-    cliente_nombre: Mapped[Optional[str]] = mapped_column(String(120), nullable=True)
+    cliente_nombre: Mapped[str | None] = mapped_column(String(120), nullable=True)
     creado_en: Mapped[datetime.datetime] = mapped_column(DateTime, default=datetime.datetime.utcnow)
 
 
@@ -72,8 +72,8 @@ class Sorteo(Base):
     nombre: Mapped[str] = mapped_column(String(120), nullable=False)
     estado: Mapped[EstadoSorteo] = mapped_column(SQLEnum(EstadoSorteo), nullable=False, default=EstadoSorteo.abierto)
     modalidad: Mapped[str] = mapped_column(String(30), nullable=False, default="libre")
-    inicia_en: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, nullable=True)
-    cierra_en: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, nullable=True)
+    inicia_en: Mapped[datetime.datetime | None] = mapped_column(DateTime, nullable=True)
+    cierra_en: Mapped[datetime.datetime | None] = mapped_column(DateTime, nullable=True)
     creado_en: Mapped[datetime.datetime] = mapped_column(DateTime, default=datetime.datetime.utcnow)
 
 
@@ -83,5 +83,5 @@ class TicketQr(Base):
     compra_id: Mapped[str] = mapped_column(String, ForeignKey("compras.id"), nullable=False)
     qr_payload: Mapped[str] = mapped_column(String, nullable=False, unique=True)
     usado: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
-    validado_en: Mapped[Optional[datetime.datetime]] = mapped_column(DateTime, nullable=True)
+    validado_en: Mapped[datetime.datetime | None] = mapped_column(DateTime, nullable=True)
     creado_en: Mapped[datetime.datetime] = mapped_column(DateTime, default=datetime.datetime.utcnow)

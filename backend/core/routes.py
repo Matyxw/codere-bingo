@@ -1,17 +1,16 @@
 from fastapi import APIRouter, HTTPException
 
 from backend.core.health import router as health_router
-from backend.core import schemas, services
+from backend.core import schemas, services, types
+
 
 router = APIRouter()
 router.include_router(health_router)
 
 
 @router.post("/compras", response_model=schemas.CompraOut)
-async def crear_compra(command: schemas.CompraIn):
-    compra = await services.create_compra(
-        services.types.CompraCommand(**command.model_dump())
-    )
+async def crear_compra(command: types.CompraCommand):
+    compra = await services.create_compra(command)
     return schemas.CompraOut.model_validate(compra)
 
 
@@ -28,13 +27,16 @@ async def validar_ticket(validacion_in: schemas.ValidacionQrIn):
     ticket = await services.validate_qr(validacion_in.qr_payload)
     if not ticket:
         raise HTTPException(status_code=404, detail="ticket no encontrado")
-    compra = await services.get_compra(ticket.compra_id)
+    compra = await services.get_compra(ticket["compra_id"])
+    if not compra:
+        raise HTTPException(status_code=404, detail="compra no encontrada")
+    compra["creado_en"] = (
+        compra["creado_en"].isoformat() if hasattr(compra["creado_en"], "isoformat") else compra["creado_en"]
+    )
     return schemas.CompraOut.model_validate(compra)
 
 
 @router.post("/sorteos", response_model=schemas.SorteoOut)
-async def crear_sorteo(sorteo_in: schemas.SorteoIn):
-    sorteo = await services.create_sorteo(
-        services.types.SorteoCommand(**sorteo_in.model_dump())
-    )
+async def crear_sorteo(command: types.SorteoCommand):
+    sorteo = await services.create_sorteo(command)
     return schemas.SorteoOut.model_validate(sorteo)

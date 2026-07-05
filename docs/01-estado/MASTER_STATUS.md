@@ -26,3 +26,9 @@
 1. Ejecutar `bash .agents/scripts/local_test.sh` en tu máquina/Antigravity
 2. Conectar staging/producción real a los workflows
 3. Definir impresora/puesto para agente local funcional
+## Estado Windows admin
+- [x] Tailscale instalado y conectado
+- [x] OpenSSH Server instalado
+- [x] Servicio sshd corriendo en puerto 22
+- [ ] WinRM configurado (pendiente ejecutar como Administrador)
+- [ ] Firewall restrictivo tailscale-only

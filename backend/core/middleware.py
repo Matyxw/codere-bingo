@@ -14,11 +14,3 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         if settings.app_env == "local":
             response.headers["Cross-Origin-Opener-Policy"] = "same-origin"
         return response
-
-
-class RateLimitMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request, call_next):
-        # Límite simple por IP sin dependencias externas.
-        # Reemplazar por slowapi/Redis cuando haya throughput real.
-        response = await call_next(request)
-        return response
