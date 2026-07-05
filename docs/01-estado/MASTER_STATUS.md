@@ -34,3 +34,9 @@ Objetivo: Control total, seguro, desde cualquier lado.
 - [ ] BitLocker + backup recovery
 - [ ] Telegram bot alertas
 - [ ] Script recuperación 5 min
+## Estado ejecutado por usuario
+- [x] PowerShell logging habilitado
+- [x] Windows autologin configurado
+- [x] Backup config creado en D:\backups
+- [x] Canary tokens creados (Desktop, D:\temp)
+- [ ] Canary token Documents pendiente por ruta faltante
