@@ -3,6 +3,11 @@
 set -euo pipefail
 
 echo '[1/5] Configuring UFW default deny...'
+if ! command -v ufw >/dev/null 2>&1; then
+  apt-get update
+  apt-get install -y ufw
+fi
+mkdir -p /etc/ufw/applications.d
 sed -i 's/^IPv6=.*/IPv6=no/' /etc/default/ufw || true
 cat > /etc/ufw/applications.d/tailscale <<'UEOF'
 [tailscale]

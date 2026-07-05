@@ -32,3 +32,12 @@
 - [x] Servicio sshd corriendo en puerto 22
 - [ ] WinRM configurado (pendiente ejecutar como Administrador)
 - [ ] Firewall restrictivo tailscale-only
+## Estado Extreme Remote Stack (2026-07-06)
+- [x] Tailscale conectado
+- [x] SSH Windows abierto (puerto 22)
+- [x] Sunshine corriendo (proceso)
+- [x] Firewall básico aplicado + allow Sunshine/Moonlight
+- [ ] p[ SunshineService reinicia y 47990 se mantiene en LISTENING ]
+- [ ] WinRM funcionando end-to-end
+- [ ] Firewall restrictivo completo
+- [ ] UFW + auditd + fail2ban en WSL
