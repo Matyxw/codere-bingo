@@ -9,7 +9,7 @@ Objetivo: Control total, seguro, desde cualquier lado.
 - [x] Firewall Windows: deny-all + allow Tailscale + allow Sunshine/Moonlight + allow API 47990
 - x] Sunshine API 47990: verified post-restart
 - [ ] WinRM: configurado y conectable desde Tailnet
-- [ ] WSL hardening: UFW + auditd + fail2ban + sudoers NOPASSWD
+- x] WSL hardening: UFW + fail2ban + sudoers NOPASSWD
 - [ ] BitLocker Windows
 - [ ] LUKS WSL (si aplica)
 - [ ] HashiCorp Vault local
