@@ -20,3 +20,17 @@ Objetivo: Control total, seguro, desde cualquier lado.
 ## Extreme Remote Stack — success 2026-07-06
 - [x] Moonlight conecta via Tailscale usando Sunshine
 - [x] Firewall Windows: deny-all inbound por defecto + allows explícitas Tailscale
+## Extreme Remote Stack — vecinos de acceso
+- [x] SSH Windows (puerto 22)
+- [x] WinRM configurado
+- [x] Tailscale direct
+- [x] Sunshine+Moonlight streaming funcionando
+- [x] Firewall deny-all + allows Tailscale específicos
+- [x] WSL hardening (UFW/Fail2Ban/sudoers)
+
+## Siguiente
+- [ ] RustDesk instalado como servicio
+- [ ] Auto-login Windows
+- [ ] BitLocker + backup recovery
+- [ ] Telegram bot alertas
+- [ ] Script recuperación 5 min
